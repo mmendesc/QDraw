@@ -11,13 +11,17 @@ import javax.swing.JFrame;
  *
  * @author JoaoCito
  */
-public class CriaCirculo extends javax.swing.JFrame   {
-
+public class CriaCirculo extends javax.swing.JDialog   {
+    public static int x;
+    public static int y;
+    public static int raio;
+    public static boolean flag=true;
     /**
      * Creates new form CriaRetangulo
      */
     public CriaCirculo() {
         initComponents();
+        this.setModal(true);
     }
 
     /**
@@ -29,6 +33,7 @@ public class CriaCirculo extends javax.swing.JFrame   {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog1 = new javax.swing.JDialog();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
@@ -37,6 +42,17 @@ public class CriaCirculo extends javax.swing.JFrame   {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -115,6 +131,10 @@ public class CriaCirculo extends javax.swing.JFrame   {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        x=Integer.parseInt(jTextField1.getText());
+        y=Integer.parseInt(jTextField2.getText());
+        raio=Integer.parseInt(jTextField3.getText());
+        flag=false;
         this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -153,9 +173,13 @@ public class CriaCirculo extends javax.swing.JFrame   {
             }
         });
     }
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -164,4 +188,6 @@ public class CriaCirculo extends javax.swing.JFrame   {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     // End of variables declaration//GEN-END:variables
+
+    
 }

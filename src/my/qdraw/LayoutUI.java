@@ -5,19 +5,31 @@
  */
 package my.qdraw;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
+import java.util.ArrayList;
 
 /**
  *
  * @author JoaoCito
  */
 public class LayoutUI extends javax.swing.JFrame {
-
+    static  BufferedImage buffer1 = new BufferedImage( 400, 298, BufferedImage.TYPE_INT_RGB );
+    static  BufferedImage buffer2 = new BufferedImage( 400, 298, BufferedImage.TYPE_INT_RGB );
+    static  ArrayList<BufferedImage> desfazer = new ArrayList<BufferedImage>();
     /**
      * Creates new form LayoutUI
      */
     public LayoutUI() {
         initComponents();
+        
+        
     }
 
     /**
@@ -33,12 +45,14 @@ public class LayoutUI extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel(criarImagem());
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -60,14 +74,19 @@ public class LayoutUI extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Arquivo");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
 
         jMenuItem1.setText("Novo");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -90,6 +109,9 @@ public class LayoutUI extends javax.swing.JFrame {
 
         jMenuItem4.setText("Salvar como ");
         jMenu1.add(jMenuItem4);
+
+        jMenuItem9.setText("Desfazer");
+        jMenu1.add(jMenuItem9);
         jMenu1.add(jSeparator1);
 
         jMenuItem5.setText("Fechar");
@@ -171,18 +193,32 @@ public class LayoutUI extends javax.swing.JFrame {
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         CriaRetangulo retangulo = new CriaRetangulo();
         retangulo.setVisible(true);
+        while(CriaRetangulo.flag){}
+        jLabel1.setIcon(criaRetangulo(CriaRetangulo.x, CriaRetangulo.y, CriaRetangulo.largura, CriaRetangulo.altura));
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         CriaCirculo circulo = new CriaCirculo();
         circulo.setVisible(true);
+        while(CriaCirculo.flag){}
+        jLabel1.setIcon(criaCirculo(CriaCirculo.x, CriaCirculo.y, CriaCirculo.raio, CriaCirculo.raio));
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         CriaLinha linha = new CriaLinha();
-        linha.setLocation(200, 200);
         linha.setVisible(true);
+        while(CriaLinha.flag){}
+        jLabel1.setIcon(criaLinha(CriaLinha.x, CriaLinha.y, CriaLinha.xf, CriaLinha.yf));
     }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+        Graphics2D g = buffer2.createGraphics();
+        //buffer1 = desfazer.get(desfazer.size()-1);
+        g.drawImage(desfazer.get(desfazer.size()-1),0,0, null);
+        desfazer.remove(desfazer.size()-1);
+        buffer1 = buffer2;
+        jLabel1.setIcon(new ImageIcon (buffer1));// TODO add your handling code here:
+    }//GEN-LAST:event_jMenu1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -219,8 +255,74 @@ public class LayoutUI extends javax.swing.JFrame {
             }
         });
     }
+    
+    private static ImageIcon criarImagem() {  
+        //int width=500, height=500;  
+          
+        Graphics g = buffer1.createGraphics();  
+        g.setColor( Color.WHITE );  
+        g.fillRect( 0, 0, 400, 298);  
+        //g.setColor( Color.BLACK );  
+        //g.drawLine( 0, 0,100, 30 );  
+        //g.drawOval(100, 100, 40, 40);
+        //g.drawRect(50, 50, 30, 70);
+       // buffer2=buffer1;
+        return new ImageIcon( buffer1 );  
+    }  
 
+     public static ImageIcon criaCirculo(int x, int y, int w,int w1){
+        
+        Graphics2D g = buffer2.createGraphics();
+        g.drawImage(buffer1, 0,0 , null);
+        //g.setColor( Color.WHITE );
+        g.setColor( Color.BLACK );  
+        g.setStroke(new BasicStroke(2.0f));
+        //g.fillRect( 0, 0, 300, 200 );  
+        g.drawOval(x, y, w, w1);
+        desfazer.add(buffer1);
+        buffer1=buffer2;
+        
+        g.dispose();
+        return new ImageIcon(buffer1);
+    }
+     public static ImageIcon criaRetangulo(int x, int y, int w,int w1){
+        
+        Graphics2D g = buffer2.createGraphics();
+        g.drawImage(buffer1, 0,0 , null);
+        //g.setColor( Color.WHITE );
+        g.setColor( Color.BLACK );  
+        g.setStroke(new BasicStroke(2.0f));
+        //g.fillRect( 0, 0, 300, 200 );  
+        g.drawRect(x, y, w, w1);
+        desfazer.add(buffer1);
+        buffer1=buffer2;
+        
+        g.dispose();
+        return new ImageIcon(buffer1);
+    }
+    public static ImageIcon criaLinha(int x, int y, int w,int w1){
+        
+        Graphics2D g = buffer2.createGraphics();
+        g.drawImage(buffer1, 0,0 , null);
+        //g.setColor( Color.WHITE );
+        g.setColor( Color.BLACK );  
+        g.setStroke(new BasicStroke(2.0f));
+        //g.fillRect( 0, 0, 300, 200 );  
+        g.drawLine(x, y, w, w1);
+        desfazer.add(buffer1);
+        buffer1=buffer2;
+        
+        g.dispose();
+        return new ImageIcon(buffer1);
+    }
+    
+    public int getHigh(){
+        return this.getHeight();
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -235,8 +337,9 @@ public class LayoutUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     // End of variables declaration//GEN-END:variables
-    
+   
 }

@@ -7,17 +7,23 @@ package my.qdraw;
 
 import javax.swing.JFrame;
 
+
 /**
  *
  * @author JoaoCito
  */
-public class CriaRetangulo extends javax.swing.JFrame   {
-
+public class CriaRetangulo extends javax.swing.JDialog   {
+    public static int x;
+    public static int y;
+    public static int altura;
+    public static int largura;
+    public static boolean flag;
     /**
      * Creates new form CriaRetangulo
      */
     public CriaRetangulo() {
         initComponents();
+        setModal(true);
     }
 
     /**
@@ -127,6 +133,11 @@ public class CriaRetangulo extends javax.swing.JFrame   {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        x=Integer.parseInt(jTextField1.getText());
+        y=Integer.parseInt(jTextField2.getText());
+        altura=Integer.parseInt(jTextField3.getText());
+        largura=Integer.parseInt(jTextField4.getText());
+        flag=false;
         this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 

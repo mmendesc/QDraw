@@ -11,13 +11,18 @@ import javax.swing.JFrame;
  *
  * @author JoaoCito
  */
-public class CriaLinha extends javax.swing.JFrame   {
-
+public class CriaLinha extends javax.swing.JDialog   {
+    public static int x;
+    public static int y;
+    public static int xf;
+    public static int yf;
+    public static boolean flag;
     /**
      * Creates new form CriaRetangulo
      */
     public CriaLinha() {
         initComponents();
+        setModal(true);
     }
 
     /**
@@ -129,6 +134,11 @@ public class CriaLinha extends javax.swing.JFrame   {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        x=Integer.parseInt(jTextField1.getText());
+        y=Integer.parseInt(jTextField2.getText());
+        xf=Integer.parseInt(jTextField3.getText());
+        yf=Integer.parseInt(jTextField4.getText());
+        flag=false;
         this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
