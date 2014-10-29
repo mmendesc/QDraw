@@ -10,10 +10,13 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorModel;
+import java.awt.image.WritableRaster;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,16 +25,24 @@ import java.util.ArrayList;
 public class LayoutUI extends javax.swing.JFrame {
     static  BufferedImage buffer1 = new BufferedImage( 400, 298, BufferedImage.TYPE_INT_RGB );
     static  BufferedImage buffer2 = new BufferedImage( 400, 298, BufferedImage.TYPE_INT_RGB );
+    static  BufferedImage buffer3 = new BufferedImage( 400, 298, BufferedImage.TYPE_INT_RGB );
     static  ArrayList<BufferedImage> desfazer = new ArrayList<BufferedImage>();
+    static  ArrayList<BufferedImage> objetos = new ArrayList<BufferedImage>();
+    static ArrayList<Integer> forma = new ArrayList<Integer>() ;
+    public static boolean flag=true;
+    private String n = "";
+    private Color cor = Color.BLACK;
     /**
      * Creates new form LayoutUI
      */
     public LayoutUI() {
         initComponents();
+       // inicializa();
+
         
         
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,6 +64,8 @@ public class LayoutUI extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem11 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -111,7 +124,28 @@ public class LayoutUI extends javax.swing.JFrame {
         jMenu1.add(jMenuItem4);
 
         jMenuItem9.setText("Desfazer");
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem9);
+
+        jMenuItem10.setText("Apagar Objeto");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem10);
+
+        jMenuItem11.setText("jMenuItem11");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem11);
         jMenu1.add(jSeparator1);
 
         jMenuItem5.setText("Fechar");
@@ -193,32 +227,56 @@ public class LayoutUI extends javax.swing.JFrame {
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         CriaRetangulo retangulo = new CriaRetangulo();
         retangulo.setVisible(true);
-        while(CriaRetangulo.flag){}
-        jLabel1.setIcon(criaRetangulo(CriaRetangulo.x, CriaRetangulo.y, CriaRetangulo.largura, CriaRetangulo.altura));
+        if(CriaRetangulo.flag)
+            jLabel1.setIcon(criaRetangulo(CriaRetangulo.x, CriaRetangulo.y, CriaRetangulo.largura, CriaRetangulo.altura));
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         CriaCirculo circulo = new CriaCirculo();
         circulo.setVisible(true);
-        while(CriaCirculo.flag){}
-        jLabel1.setIcon(criaCirculo(CriaCirculo.x, CriaCirculo.y, CriaCirculo.raio, CriaCirculo.raio));
+        //while(CriaCirculo.flag){}
+        if(CriaCirculo.flag)
+            jLabel1.setIcon(criaCirculo(CriaCirculo.x, CriaCirculo.y, CriaCirculo.raio, CriaCirculo.raio));
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         CriaLinha linha = new CriaLinha();
         linha.setVisible(true);
-        while(CriaLinha.flag){}
-        jLabel1.setIcon(criaLinha(CriaLinha.x, CriaLinha.y, CriaLinha.xf, CriaLinha.yf));
+        if(CriaLinha.flag)
+            jLabel1.setIcon(criaLinha(CriaLinha.x, CriaLinha.y, CriaLinha.xf, CriaLinha.yf));
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+        if(desfazer.size()!=1){
         Graphics2D g = buffer2.createGraphics();
         //buffer1 = desfazer.get(desfazer.size()-1);
-        g.drawImage(desfazer.get(desfazer.size()-1),0,0, null);
+        g.drawImage(desfazer.get(desfazer.size()-2),0,0, null);
+        //JOptionPane.showMessageDialog(null, desfazer.size());
         desfazer.remove(desfazer.size()-1);
+        forma.remove(desfazer.size());
+        objetos.remove(desfazer.size());
         buffer1 = buffer2;
-        jLabel1.setIcon(new ImageIcon (buffer1));// TODO add your handling code here:
-    }//GEN-LAST:event_jMenu1ActionPerformed
+        //JOptionPane.showMessageDialog(null, desfazer.size());
+        jLabel1.setIcon(new ImageIcon (buffer2));// TODO add your handling code here:
+        } else {
+            desfazer.remove(0);
+            jLabel1.setIcon(criarImagem());
+        }
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        n = JOptionPane.showInputDialog(null, n);
+        //JOptionPane.showMessageDialog(null, Integer.parseInt(n));
+        redesenha(Integer.parseInt(n));// TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -256,6 +314,14 @@ public class LayoutUI extends javax.swing.JFrame {
         });
     }
     
+    /*private static void inicializa(){
+           Graphics g = buffer1.createGraphics();  
+        g.setColor( Color.WHITE );  
+        g.fillRect( 0, 0, 400, 298); 
+        desfazer.add(deepCopy(buffer1));
+    }*/
+            
+    
     private static ImageIcon criarImagem() {  
         //int width=500, height=500;  
           
@@ -267,26 +333,39 @@ public class LayoutUI extends javax.swing.JFrame {
         //g.drawOval(100, 100, 40, 40);
         //g.drawRect(50, 50, 30, 70);
        // buffer2=buffer1;
+        //desfazer.add(deepCopy(buffer1));
         return new ImageIcon( buffer1 );  
     }  
 
      public static ImageIcon criaCirculo(int x, int y, int w,int w1){
-        
+        forma.add(1);
         Graphics2D g = buffer2.createGraphics();
+        Graphics2D g2= buffer3.createGraphics();
         g.drawImage(buffer1, 0,0 , null);
         //g.setColor( Color.WHITE );
         g.setColor( Color.BLACK );  
         g.setStroke(new BasicStroke(2.0f));
         //g.fillRect( 0, 0, 300, 200 );  
         g.drawOval(x, y, w, w1);
-        desfazer.add(buffer1);
+        g2.setColor( Color.BLACK );  
+        g2.setStroke(new BasicStroke(2.0f)); 
+        g2.drawOval(x, y, w, w1);
+        objetos.add(deepCopy(buffer3));
+        //if(desfazer.size() == 2)
+            //desfazer.add(deepCopy(desfazer.get(0)));
+        if(flag){
         buffer1=buffer2;
+        desfazer.add(deepCopy(buffer1));
+        } else{
+        desfazer.add(deepCopy(buffer1));
+        buffer1=buffer2;}
         
         g.dispose();
         return new ImageIcon(buffer1);
     }
      public static ImageIcon criaRetangulo(int x, int y, int w,int w1){
-        
+         forma.add(2);
+        Graphics2D g2= buffer3.createGraphics();
         Graphics2D g = buffer2.createGraphics();
         g.drawImage(buffer1, 0,0 , null);
         //g.setColor( Color.WHITE );
@@ -294,14 +373,23 @@ public class LayoutUI extends javax.swing.JFrame {
         g.setStroke(new BasicStroke(2.0f));
         //g.fillRect( 0, 0, 300, 200 );  
         g.drawRect(x, y, w, w1);
-        desfazer.add(buffer1);
+        g2.setColor( Color.BLACK );  
+        g2.setStroke(new BasicStroke(2.0f)); 
+        g2.drawRect(x, y, w, w1);
+        objetos.add(deepCopy(buffer3));
+        if(flag){
         buffer1=buffer2;
+        desfazer.add(deepCopy(buffer1));
+        } else{
+        desfazer.add(deepCopy(buffer1));
+        buffer1=buffer2;}
         
         g.dispose();
         return new ImageIcon(buffer1);
     }
     public static ImageIcon criaLinha(int x, int y, int w,int w1){
-        
+        forma.add(3);
+        Graphics2D g2= buffer3.createGraphics();
         Graphics2D g = buffer2.createGraphics();
         g.drawImage(buffer1, 0,0 , null);
         //g.setColor( Color.WHITE );
@@ -309,20 +397,51 @@ public class LayoutUI extends javax.swing.JFrame {
         g.setStroke(new BasicStroke(2.0f));
         //g.fillRect( 0, 0, 300, 200 );  
         g.drawLine(x, y, w, w1);
-        desfazer.add(buffer1);
+        g2.setColor( Color.BLACK );  
+        g2.setStroke(new BasicStroke(2.0f)); 
+        g2.drawLine(x, y, w, w1);
+        objetos.add(deepCopy(buffer3));
+        if(flag){
         buffer1=buffer2;
+        desfazer.add(deepCopy(buffer1));
+        } else{
+        desfazer.add(deepCopy(buffer1));
+        buffer1=buffer2;}
         
         g.dispose();
         return new ImageIcon(buffer1);
     }
     
+    
+    public static void redesenha(int n){
+        Graphics2D g = buffer2.createGraphics();
+        g.drawImage(objetos.get(0),0,0, null);
+        g.setColor( Color.BLACK );  
+        g.setStroke(new BasicStroke(2.0f));
+        jLabel1.setIcon(criarImagem());
+        objetos.remove(n);
+        g.drawImage(objetos.get(0), 0, 0, null);
+        for(int i=1;i<objetos.size();i++){
+            //if(forma.get(i)==1)
+                g.drawImage(objetos.get(i), 0, 0, null);
+            //if(forma.get(i)==2)
+                
+        }
+    
+        }
+    static BufferedImage deepCopy(BufferedImage bi) {
+        ColorModel cm = bi.getColorModel();
+        boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
+        WritableRaster raster = bi.copyData(null);
+        return new BufferedImage(cm, raster, isAlphaPremultiplied, null);
+    }
     public int getHigh(){
         return this.getHeight();
     }
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private static javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -330,6 +449,8 @@ public class LayoutUI extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;

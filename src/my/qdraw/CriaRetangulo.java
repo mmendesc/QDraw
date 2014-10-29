@@ -23,6 +23,7 @@ public class CriaRetangulo extends javax.swing.JDialog   {
      */
     public CriaRetangulo() {
         initComponents();
+        flag = false;
         setModal(true);
     }
 
@@ -137,7 +138,7 @@ public class CriaRetangulo extends javax.swing.JDialog   {
         y=Integer.parseInt(jTextField2.getText());
         altura=Integer.parseInt(jTextField3.getText());
         largura=Integer.parseInt(jTextField4.getText());
-        flag=false;
+        flag=true;
         this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 

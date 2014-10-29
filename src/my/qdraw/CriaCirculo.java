@@ -6,6 +6,7 @@
 package my.qdraw;
 
 import javax.swing.JFrame;
+import static my.qdraw.LayoutUI.criaCirculo;
 
 /**
  *
@@ -15,12 +16,13 @@ public class CriaCirculo extends javax.swing.JDialog   {
     public static int x;
     public static int y;
     public static int raio;
-    public static boolean flag=true;
+    public static boolean flag;
     /**
      * Creates new form CriaRetangulo
      */
     public CriaCirculo() {
         initComponents();
+        flag=false;
         this.setModal(true);
     }
 
@@ -134,7 +136,7 @@ public class CriaCirculo extends javax.swing.JDialog   {
         x=Integer.parseInt(jTextField1.getText());
         y=Integer.parseInt(jTextField2.getText());
         raio=Integer.parseInt(jTextField3.getText());
-        flag=false;
+        flag=true;
         this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
