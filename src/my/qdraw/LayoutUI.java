@@ -12,18 +12,20 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorModel;
 import java.awt.image.WritableRaster;
+import java.io.File;
+import java.io.FileOutputStream;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import java.util.ArrayList;
 import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
-
+import java.io.*;
 /**
  *
  * @author JoaoCito
  */
-public class LayoutUI extends javax.swing.JFrame {
+public class LayoutUI extends javax.swing.JFrame implements java.io.Serializable{
     static  BufferedImage buffer1 = new BufferedImage( 400, 298, BufferedImage.TYPE_INT_RGB );
     static  BufferedImage buffer2 = new BufferedImage( 400, 298, BufferedImage.TYPE_INT_RGB );
     static  BufferedImage buffer3 = new BufferedImage( 400, 298, BufferedImage.TYPE_INT_RGB );
@@ -122,6 +124,11 @@ public class LayoutUI extends javax.swing.JFrame {
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("Salvar");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jMenuItem4.setText("Salvar como ");
@@ -216,8 +223,9 @@ public class LayoutUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        JFileChooser chooser = new JFileChooser();
-        int showDialog = chooser.showDialog(jMenu1, null);
+            LayoutUI layout = new Serializavel().carregar();
+
+        
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
@@ -283,6 +291,10 @@ public class LayoutUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+            new Serializavel().serializar(this);        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -323,7 +335,7 @@ public class LayoutUI extends javax.swing.JFrame {
            Graphics g = buffer1.createGraphics();  
         g.setColor( Color.WHITE );  
         g.fillRect( 0, 0, 400, 298); 
-        desfazer.add(deepCopy(buffer1));
+        desfazer.add(Copiar(buffer1));
     }*/
             
     
@@ -338,7 +350,7 @@ public class LayoutUI extends javax.swing.JFrame {
         //g.drawOval(100, 100, 40, 40);
         //g.drawRect(50, 50, 30, 70);
        // buffer2=buffer1;
-        //desfazer.add(deepCopy(buffer1));
+        //desfazer.add(Copiar(buffer1));
         return new ImageIcon( buffer1 );  
     }  
 
@@ -355,14 +367,14 @@ public class LayoutUI extends javax.swing.JFrame {
         g2.setColor( cor );  
         g2.setStroke(new BasicStroke(2.0f)); 
         g2.drawOval(x, y, w, w1);
-        objetos.add(deepCopy(buffer3));
+        objetos.add(Copiar(buffer3));
         //if(desfazer.size() == 2)
-            //desfazer.add(deepCopy(desfazer.get(0)));
+            //desfazer.add(Copiar(desfazer.get(0)));
         if(flag){
         buffer1=buffer2;
-        desfazer.add(deepCopy(buffer1));
+        desfazer.add(Copiar(buffer1));
         } else{
-        desfazer.add(deepCopy(buffer1));
+        desfazer.add(Copiar(buffer1));
         buffer1=buffer2;}
         
         g.dispose();
@@ -381,12 +393,12 @@ public class LayoutUI extends javax.swing.JFrame {
         g2.setColor( cor );  
         g2.setStroke(new BasicStroke(2.0f)); 
         g2.drawRect(x, y, w, w1);
-        objetos.add(deepCopy(buffer3));
+        objetos.add(Copiar(buffer3));
         if(flag){
         buffer1=buffer2;
-        desfazer.add(deepCopy(buffer1));
+        desfazer.add(Copiar(buffer1));
         } else{
-        desfazer.add(deepCopy(buffer1));
+        desfazer.add(Copiar(buffer1));
         buffer1=buffer2;}
         
         g.dispose();
@@ -405,12 +417,12 @@ public class LayoutUI extends javax.swing.JFrame {
         g2.setColor( cor );  
         g2.setStroke(new BasicStroke(2.0f)); 
         g2.drawLine(x, y, w, w1);
-        objetos.add(deepCopy(buffer3));
+        objetos.add(Copiar(buffer3));
         if(flag){
         buffer1=buffer2;
-        desfazer.add(deepCopy(buffer1));
+        desfazer.add(Copiar(buffer1));
         } else{
-        desfazer.add(deepCopy(buffer1));
+        desfazer.add(Copiar(buffer1));
         buffer1=buffer2;}
         
         g.dispose();
@@ -434,7 +446,7 @@ public class LayoutUI extends javax.swing.JFrame {
         }
     
     }*/
-    static BufferedImage deepCopy(BufferedImage bi) {
+    static BufferedImage Copiar(BufferedImage bi) {
         ColorModel cm = bi.getColorModel();
         boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
         WritableRaster raster = bi.copyData(null);
@@ -444,6 +456,9 @@ public class LayoutUI extends javax.swing.JFrame {
         return this.getHeight();
     }
     
+    
+    
+   
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -469,4 +484,55 @@ public class LayoutUI extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator1;
     // End of variables declaration//GEN-END:variables
    
+    
+  
+}
+
+class Serializavel{
+ public LayoutUI carregar(){
+        LayoutUI layout=null;
+        try {
+ 
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.showOpenDialog(null);
+ 
+            File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
+ 
+            FileInputStream fis = new FileInputStream(file);
+            ObjectInputStream is = new ObjectInputStream(fis);
+ 
+            layout = (LayoutUI) is.readObject();
+ 
+        } catch (FileNotFoundException e1) {
+            e1.printStackTrace();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        } catch (ClassNotFoundException e1) {
+            e1.printStackTrace();
+        }
+ 
+        return layout;
+    }
+ 
+ 
+ 
+    public void serializar(LayoutUI layout){
+        try {
+ 
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.showSaveDialog(null);
+ 
+            File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
+ 
+            FileOutputStream fileStream = new FileOutputStream(file);
+ 
+            ObjectOutputStream os = new ObjectOutputStream(fileStream);
+            os.writeObject(layout);
+ 
+        } catch (FileNotFoundException e1) {
+            e1.printStackTrace();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+    }
 }
