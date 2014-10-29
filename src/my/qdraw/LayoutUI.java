@@ -16,6 +16,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import java.util.ArrayList;
+import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
 
 /**
@@ -31,7 +32,7 @@ public class LayoutUI extends javax.swing.JFrame {
     static ArrayList<Integer> forma = new ArrayList<Integer>() ;
     public static boolean flag=true;
     private String n = "";
-    private Color cor = Color.BLACK;
+    static Color cor = Color.BLACK;
     /**
      * Creates new form LayoutUI
      */
@@ -55,6 +56,7 @@ public class LayoutUI extends javax.swing.JFrame {
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
+        jMenuItem11 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel(criarImagem());
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -65,7 +67,7 @@ public class LayoutUI extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -78,6 +80,8 @@ public class LayoutUI extends javax.swing.JFrame {
 
         jMenu4.setText("Edit");
         jMenuBar2.add(jMenu4);
+
+        jMenuItem11.setText("jMenuItem11");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -139,13 +143,13 @@ public class LayoutUI extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem10);
 
-        jMenuItem11.setText("jMenuItem11");
-        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem12.setText("Cor");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem11ActionPerformed(evt);
+                jMenuItem12ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem11);
+        jMenu1.add(jMenuItem12);
         jMenu1.add(jSeparator1);
 
         jMenuItem5.setText("Fechar");
@@ -271,12 +275,13 @@ public class LayoutUI extends javax.swing.JFrame {
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         n = JOptionPane.showInputDialog(null, n);
         //JOptionPane.showMessageDialog(null, Integer.parseInt(n));
-        redesenha(Integer.parseInt(n));// TODO add your handling code here:
+        //redesenha(Integer.parseInt(n));// TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
-    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        cor = JColorChooser.showDialog(jPanel1, "Editando Cor da Figura", cor);
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem11ActionPerformed
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -328,7 +333,7 @@ public class LayoutUI extends javax.swing.JFrame {
         Graphics g = buffer1.createGraphics();  
         g.setColor( Color.WHITE );  
         g.fillRect( 0, 0, 400, 298);  
-        //g.setColor( Color.BLACK );  
+        //g.setColor( cor );  
         //g.drawLine( 0, 0,100, 30 );  
         //g.drawOval(100, 100, 40, 40);
         //g.drawRect(50, 50, 30, 70);
@@ -343,11 +348,11 @@ public class LayoutUI extends javax.swing.JFrame {
         Graphics2D g2= buffer3.createGraphics();
         g.drawImage(buffer1, 0,0 , null);
         //g.setColor( Color.WHITE );
-        g.setColor( Color.BLACK );  
+        g.setColor( cor );  
         g.setStroke(new BasicStroke(2.0f));
         //g.fillRect( 0, 0, 300, 200 );  
         g.drawOval(x, y, w, w1);
-        g2.setColor( Color.BLACK );  
+        g2.setColor( cor );  
         g2.setStroke(new BasicStroke(2.0f)); 
         g2.drawOval(x, y, w, w1);
         objetos.add(deepCopy(buffer3));
@@ -369,11 +374,11 @@ public class LayoutUI extends javax.swing.JFrame {
         Graphics2D g = buffer2.createGraphics();
         g.drawImage(buffer1, 0,0 , null);
         //g.setColor( Color.WHITE );
-        g.setColor( Color.BLACK );  
+        g.setColor( cor );  
         g.setStroke(new BasicStroke(2.0f));
         //g.fillRect( 0, 0, 300, 200 );  
         g.drawRect(x, y, w, w1);
-        g2.setColor( Color.BLACK );  
+        g2.setColor( cor );  
         g2.setStroke(new BasicStroke(2.0f)); 
         g2.drawRect(x, y, w, w1);
         objetos.add(deepCopy(buffer3));
@@ -393,11 +398,11 @@ public class LayoutUI extends javax.swing.JFrame {
         Graphics2D g = buffer2.createGraphics();
         g.drawImage(buffer1, 0,0 , null);
         //g.setColor( Color.WHITE );
-        g.setColor( Color.BLACK );  
+        g.setColor( cor );  
         g.setStroke(new BasicStroke(2.0f));
         //g.fillRect( 0, 0, 300, 200 );  
         g.drawLine(x, y, w, w1);
-        g2.setColor( Color.BLACK );  
+        g2.setColor( cor );  
         g2.setStroke(new BasicStroke(2.0f)); 
         g2.drawLine(x, y, w, w1);
         objetos.add(deepCopy(buffer3));
@@ -413,10 +418,10 @@ public class LayoutUI extends javax.swing.JFrame {
     }
     
     
-    public static void redesenha(int n){
+    /*public static void redesenha(int n){
         Graphics2D g = buffer2.createGraphics();
         g.drawImage(objetos.get(0),0,0, null);
-        g.setColor( Color.BLACK );  
+        g.setColor( cor );  
         g.setStroke(new BasicStroke(2.0f));
         jLabel1.setIcon(criarImagem());
         objetos.remove(n);
@@ -428,7 +433,7 @@ public class LayoutUI extends javax.swing.JFrame {
                 
         }
     
-        }
+    }*/
     static BufferedImage deepCopy(BufferedImage bi) {
         ColorModel cm = bi.getColorModel();
         boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
@@ -441,7 +446,7 @@ public class LayoutUI extends javax.swing.JFrame {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private static javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -451,6 +456,7 @@ public class LayoutUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
