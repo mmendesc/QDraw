@@ -6,7 +6,7 @@
 package my.qdraw;
 
 import javax.swing.JFrame;
-import static my.qdraw.LayoutUI.criaCirculo;
+import static my.qdraw.Imagem.criaCirculo;
 
 /**
  *

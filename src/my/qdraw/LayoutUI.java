@@ -25,16 +25,8 @@ import java.io.*;
  *
  * @author JoaoCito
  */
-public class LayoutUI extends javax.swing.JFrame implements java.io.Serializable{
-    static  BufferedImage buffer1 = new BufferedImage( 400, 298, BufferedImage.TYPE_INT_RGB );
-    static  BufferedImage buffer2 = new BufferedImage( 400, 298, BufferedImage.TYPE_INT_RGB );
-    static  BufferedImage buffer3 = new BufferedImage( 400, 298, BufferedImage.TYPE_INT_RGB );
-    static  ArrayList<BufferedImage> desfazer = new ArrayList<BufferedImage>();
-    static  ArrayList<BufferedImage> objetos = new ArrayList<BufferedImage>();
-    static ArrayList<Integer> forma = new ArrayList<Integer>() ;
-    public static boolean flag=true;
-    private String n = "";
-    static Color cor = Color.BLACK;
+public class LayoutUI extends javax.swing.JFrame {
+    Imagem imagem = new Imagem();
     /**
      * Creates new form LayoutUI
      */
@@ -60,7 +52,7 @@ public class LayoutUI extends javax.swing.JFrame implements java.io.Serializable
         jMenu4 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel(criarImagem());
+        jLabel1 = new javax.swing.JLabel(imagem.criarImagem());
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -223,7 +215,8 @@ public class LayoutUI extends javax.swing.JFrame implements java.io.Serializable
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-            LayoutUI layout = new Serializavel().carregar();
+              new Serializavel().carregar();
+            //jLabel1.setIcon(null);
 
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -240,7 +233,7 @@ public class LayoutUI extends javax.swing.JFrame implements java.io.Serializable
         CriaRetangulo retangulo = new CriaRetangulo();
         retangulo.setVisible(true);
         if(CriaRetangulo.flag)
-            jLabel1.setIcon(criaRetangulo(CriaRetangulo.x, CriaRetangulo.y, CriaRetangulo.largura, CriaRetangulo.altura));
+            jLabel1.setIcon(imagem.criaRetangulo(CriaRetangulo.x, CriaRetangulo.y, CriaRetangulo.largura, CriaRetangulo.altura));
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
@@ -248,14 +241,14 @@ public class LayoutUI extends javax.swing.JFrame implements java.io.Serializable
         circulo.setVisible(true);
         //while(CriaCirculo.flag){}
         if(CriaCirculo.flag)
-            jLabel1.setIcon(criaCirculo(CriaCirculo.x, CriaCirculo.y, CriaCirculo.raio, CriaCirculo.raio));
+            jLabel1.setIcon(imagem.criaCirculo(CriaCirculo.x, CriaCirculo.y, CriaCirculo.raio, CriaCirculo.raio));
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         CriaLinha linha = new CriaLinha();
         linha.setVisible(true);
         if(CriaLinha.flag)
-            jLabel1.setIcon(criaLinha(CriaLinha.x, CriaLinha.y, CriaLinha.xf, CriaLinha.yf));
+            jLabel1.setIcon(imagem.criaLinha(CriaLinha.x, CriaLinha.y, CriaLinha.xf, CriaLinha.yf));
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
@@ -263,36 +256,36 @@ public class LayoutUI extends javax.swing.JFrame implements java.io.Serializable
     }//GEN-LAST:event_jMenu1ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        if(desfazer.size()!=1){
-        Graphics2D g = buffer2.createGraphics();
+        if(imagem.desfazer.size()!=1){
+        Graphics2D g = imagem.buffer2.createGraphics();
         //buffer1 = desfazer.get(desfazer.size()-1);
-        g.drawImage(desfazer.get(desfazer.size()-2),0,0, null);
+        g.drawImage(imagem.desfazer.get(imagem.desfazer.size()-2),0,0, null);
         //JOptionPane.showMessageDialog(null, desfazer.size());
-        desfazer.remove(desfazer.size()-1);
-        forma.remove(desfazer.size());
-        objetos.remove(desfazer.size());
-        buffer1 = buffer2;
+        imagem.desfazer.remove(imagem.desfazer.size()-1);
+        imagem.forma.remove(imagem.desfazer.size());
+        imagem.objetos.remove(imagem.desfazer.size());
+        imagem.buffer1 = imagem.buffer2;
         //JOptionPane.showMessageDialog(null, desfazer.size());
-        jLabel1.setIcon(new ImageIcon (buffer2));// TODO add your handling code here:
+        jLabel1.setIcon(new ImageIcon (imagem.buffer2));// TODO add your handling code here:
         } else {
-            desfazer.remove(0);
-            jLabel1.setIcon(criarImagem());
+            imagem.desfazer.remove(0);
+            jLabel1.setIcon(imagem.criarImagem());
         }
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-        n = JOptionPane.showInputDialog(null, n);
+        imagem.n = JOptionPane.showInputDialog(null, imagem.n);
         //JOptionPane.showMessageDialog(null, Integer.parseInt(n));
         //redesenha(Integer.parseInt(n));// TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-        cor = JColorChooser.showDialog(jPanel1, "Editando Cor da Figura", cor);
+        imagem.cor = JColorChooser.showDialog(jPanel1, "Editando Cor da Figura", imagem.cor);
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-            new Serializavel().serializar(this);        // TODO add your handling code here:
+            new Serializavel().serializar(imagem);        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
@@ -337,99 +330,7 @@ public class LayoutUI extends javax.swing.JFrame implements java.io.Serializable
         g.fillRect( 0, 0, 400, 298); 
         desfazer.add(Copiar(buffer1));
     }*/
-            
-    
-    private static ImageIcon criarImagem() {  
-        //int width=500, height=500;  
-          
-        Graphics g = buffer1.createGraphics();  
-        g.setColor( Color.WHITE );  
-        g.fillRect( 0, 0, 400, 298);  
-        //g.setColor( cor );  
-        //g.drawLine( 0, 0,100, 30 );  
-        //g.drawOval(100, 100, 40, 40);
-        //g.drawRect(50, 50, 30, 70);
-       // buffer2=buffer1;
-        //desfazer.add(Copiar(buffer1));
-        return new ImageIcon( buffer1 );  
-    }  
-
-     public static ImageIcon criaCirculo(int x, int y, int w,int w1){
-        forma.add(1);
-        Graphics2D g = buffer2.createGraphics();
-        Graphics2D g2= buffer3.createGraphics();
-        g.drawImage(buffer1, 0,0 , null);
-        //g.setColor( Color.WHITE );
-        g.setColor( cor );  
-        g.setStroke(new BasicStroke(2.0f));
-        //g.fillRect( 0, 0, 300, 200 );  
-        g.drawOval(x, y, w, w1);
-        g2.setColor( cor );  
-        g2.setStroke(new BasicStroke(2.0f)); 
-        g2.drawOval(x, y, w, w1);
-        objetos.add(Copiar(buffer3));
-        //if(desfazer.size() == 2)
-            //desfazer.add(Copiar(desfazer.get(0)));
-        if(flag){
-        buffer1=buffer2;
-        desfazer.add(Copiar(buffer1));
-        } else{
-        desfazer.add(Copiar(buffer1));
-        buffer1=buffer2;}
-        
-        g.dispose();
-        return new ImageIcon(buffer1);
-    }
-     public static ImageIcon criaRetangulo(int x, int y, int w,int w1){
-         forma.add(2);
-        Graphics2D g2= buffer3.createGraphics();
-        Graphics2D g = buffer2.createGraphics();
-        g.drawImage(buffer1, 0,0 , null);
-        //g.setColor( Color.WHITE );
-        g.setColor( cor );  
-        g.setStroke(new BasicStroke(2.0f));
-        //g.fillRect( 0, 0, 300, 200 );  
-        g.drawRect(x, y, w, w1);
-        g2.setColor( cor );  
-        g2.setStroke(new BasicStroke(2.0f)); 
-        g2.drawRect(x, y, w, w1);
-        objetos.add(Copiar(buffer3));
-        if(flag){
-        buffer1=buffer2;
-        desfazer.add(Copiar(buffer1));
-        } else{
-        desfazer.add(Copiar(buffer1));
-        buffer1=buffer2;}
-        
-        g.dispose();
-        return new ImageIcon(buffer1);
-    }
-    public static ImageIcon criaLinha(int x, int y, int w,int w1){
-        forma.add(3);
-        Graphics2D g2= buffer3.createGraphics();
-        Graphics2D g = buffer2.createGraphics();
-        g.drawImage(buffer1, 0,0 , null);
-        //g.setColor( Color.WHITE );
-        g.setColor( cor );  
-        g.setStroke(new BasicStroke(2.0f));
-        //g.fillRect( 0, 0, 300, 200 );  
-        g.drawLine(x, y, w, w1);
-        g2.setColor( cor );  
-        g2.setStroke(new BasicStroke(2.0f)); 
-        g2.drawLine(x, y, w, w1);
-        objetos.add(Copiar(buffer3));
-        if(flag){
-        buffer1=buffer2;
-        desfazer.add(Copiar(buffer1));
-        } else{
-        desfazer.add(Copiar(buffer1));
-        buffer1=buffer2;}
-        
-        g.dispose();
-        return new ImageIcon(buffer1);
-    }
-    
-    
+ 
     /*public static void redesenha(int n){
         Graphics2D g = buffer2.createGraphics();
         g.drawImage(objetos.get(0),0,0, null);
@@ -446,12 +347,7 @@ public class LayoutUI extends javax.swing.JFrame implements java.io.Serializable
         }
     
     }*/
-    static BufferedImage Copiar(BufferedImage bi) {
-        ColorModel cm = bi.getColorModel();
-        boolean isAlphaPremultiplied = cm.isAlphaPremultiplied();
-        WritableRaster raster = bi.copyData(null);
-        return new BufferedImage(cm, raster, isAlphaPremultiplied, null);
-    }
+    
     public int getHigh(){
         return this.getHeight();
     }
@@ -486,53 +382,4 @@ public class LayoutUI extends javax.swing.JFrame implements java.io.Serializable
    
     
   
-}
-
-class Serializavel{
- public LayoutUI carregar(){
-        LayoutUI layout=null;
-        try {
- 
-            JFileChooser fileChooser = new JFileChooser();
-            fileChooser.showOpenDialog(null);
- 
-            File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
- 
-            FileInputStream fis = new FileInputStream(file);
-            ObjectInputStream is = new ObjectInputStream(fis);
- 
-            layout = (LayoutUI) is.readObject();
- 
-        } catch (FileNotFoundException e1) {
-            e1.printStackTrace();
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        } catch (ClassNotFoundException e1) {
-            e1.printStackTrace();
-        }
- 
-        return layout;
-    }
- 
- 
- 
-    public void serializar(LayoutUI layout){
-        try {
- 
-            JFileChooser fileChooser = new JFileChooser();
-            fileChooser.showSaveDialog(null);
- 
-            File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
- 
-            FileOutputStream fileStream = new FileOutputStream(file);
- 
-            ObjectOutputStream os = new ObjectOutputStream(fileStream);
-            os.writeObject(layout);
- 
-        } catch (FileNotFoundException e1) {
-            e1.printStackTrace();
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
-    }
 }
