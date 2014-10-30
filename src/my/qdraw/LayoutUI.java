@@ -217,7 +217,7 @@ public class LayoutUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-              new Serializavel().carregar();
+              new Serializavel().carregar(jLabel1,imagem);
             //jLabel1.setIcon(null);
 
         
@@ -242,6 +242,7 @@ public class LayoutUI extends javax.swing.JFrame {
         CriaCirculo circulo = new CriaCirculo();
         circulo.setVisible(true);
         //while(CriaCirculo.flag){}
+        
         if(CriaCirculo.flag)
             jLabel1.setIcon(imagem.criaCirculo(CriaCirculo.x, CriaCirculo.y, CriaCirculo.raio, CriaCirculo.raio));
     }//GEN-LAST:event_jMenuItem7ActionPerformed

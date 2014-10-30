@@ -162,7 +162,7 @@ public class CriaLinha extends javax.swing.JDialog   {
         xf=Integer.parseInt(jTextField3.getText());
         yf=Integer.parseInt(jTextField4.getText());
         flag=true;
-        
+        Imagem.parametros.add(new Parametros(x,xf,y,yf,0,0,0,2));
         if(Integer.parseInt(jTextField1.getText())>400)
               throw new MaiorValor("Desenhando Fora");
         if(Integer.parseInt(jTextField2.getText())>298)

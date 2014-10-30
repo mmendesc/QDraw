@@ -22,6 +22,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import static my.qdraw.Imagem.Copiar;
 import static my.qdraw.Imagem.desfazer;
 
@@ -39,7 +40,7 @@ public class Imagem implements java.io.Serializable{
     public static boolean flag=true;
     public String n = "";
     static Color cor = Color.BLACK;
-    
+    static ArrayList<Parametros> parametros= new ArrayList<Parametros>();
     public ImageIcon criarImagem() {  
         //int width=500, height=500;  
           
@@ -138,7 +139,7 @@ public class Imagem implements java.io.Serializable{
 }
 
 class Serializavel{
- public void carregar(){
+ public void carregar(JLabel jLabel1,Imagem imagem){
        // Imagem layout=null;
         try {
  
@@ -150,7 +151,7 @@ class Serializavel{
             FileInputStream fis = new FileInputStream(file);
             ObjectInputStream is = new ObjectInputStream(fis);
  
-            desfazer = (ArrayList) is.readObject();
+            Imagem.parametros = (ArrayList) is.readObject();
  
         } catch (FileNotFoundException e1) {
             e1.printStackTrace();
@@ -159,6 +160,8 @@ class Serializavel{
         } catch (ClassNotFoundException e1) {
             e1.printStackTrace();
         }
+        
+        redesenha(jLabel1, imagem);
  
        // return layout;
     }
@@ -176,12 +179,23 @@ class Serializavel{
             FileOutputStream fileStream = new FileOutputStream(file);
  
             ObjectOutputStream os = new ObjectOutputStream(fileStream);
-            os.writeObject(desfazer);
+            os.writeObject(Imagem.parametros);
              os.close();
         } catch (FileNotFoundException e1) {
             e1.printStackTrace();
         } catch (IOException e1) {
             e1.printStackTrace();
+        }
+    }
+    
+    public static void redesenha(JLabel jLabel1,Imagem imagem){
+        for(int i=0;i<Imagem.parametros.size();i++){
+            if(Imagem.parametros.get(i).getForma()==1)
+               jLabel1.setIcon(imagem.criaCirculo(Imagem.parametros.get(i).getX1(), Imagem.parametros.get(i).getY1(), Imagem.parametros.get(i).getRaio(), Imagem.parametros.get(i).getRaio()));
+            if(Imagem.parametros.get(i).getForma()==2)
+                jLabel1.setIcon(imagem.criaLinha(Imagem.parametros.get(i).getX1(), Imagem.parametros.get(i).getY1(), Imagem.parametros.get(i).getX2(), Imagem.parametros.get(i).getY2()));
+            if(Imagem.parametros.get(i).getForma()==3)
+                jLabel1.setIcon(imagem.criaRetangulo(Imagem.parametros.get(i).getX1(), Imagem.parametros.get(i).getY1(), Imagem.parametros.get(i).largura, Imagem.parametros.get(i).getAltura()));
         }
     }
 }
