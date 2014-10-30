@@ -32,6 +32,7 @@ public class LayoutUI extends javax.swing.JFrame {
      */
     public LayoutUI() {
         initComponents();
+        this.setResizable(false);
        // inicializa();
 
         
@@ -211,7 +212,8 @@ public class LayoutUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
+        Imagem.desfazer.clear();
+        jLabel1.setIcon(imagem.criarImagem());// TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
