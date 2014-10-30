@@ -5,6 +5,8 @@
  */
 package my.qdraw;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import static my.qdraw.Imagem.criaCirculo;
@@ -149,12 +151,24 @@ public class CriaCirculo extends javax.swing.JDialog   {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+     try{ 
         x=Integer.parseInt(jTextField1.getText());
         y=Integer.parseInt(jTextField2.getText());
         raio=Integer.parseInt(jTextField3.getText());
         flag=true;
+        
+        if(Integer.parseInt(jTextField1.getText())>400)
+              throw new MaiorValor("Desenhando Fora");
+        if(Integer.parseInt(jTextField2.getText())>298)
+              throw new MenorValor("Desenhando Fora");
+        if(Integer.parseInt(jTextField3.getText())==0)
+              throw new Vazio("Desenhando Fora");
         this.dispose();
+     } catch(MaiorValor e){JOptionPane.showMessageDialog(null, "Desenhando Fora,Diminua o Valor de X", null, JOptionPane.ERROR_MESSAGE);
+     } catch(MenorValor e){JOptionPane.showMessageDialog(null, "Desenhando Fora,Diminua o Valor de Y", null, JOptionPane.ERROR_MESSAGE);
+     }catch(Vazio e){JOptionPane.showMessageDialog(null, "Desenhando Figura de Tamanho 0, Digite um Raio maior", null, JOptionPane.ERROR_MESSAGE);}
+     
+        
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -207,13 +221,13 @@ public class CriaCirculo extends javax.swing.JDialog   {
               evt.consume();
 
        }
-        }
+            }
         catch(NumberFormatException e){
            /* //jTextField1.setText("");
             JOptionPane.showMessageDialog(null, "Digita Saporra Direito Mermão!");
             int length = jTextField1.getText().length();  
             jTextField1.setText(jTextField1.getText().substring(0, length-2));*/
-        }        // TODO add your handling code here:
+        }         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3KeyTyped
 
     /**
