@@ -37,7 +37,11 @@ public class Imagem implements java.io.Serializable{
     static  ArrayList<BufferedImage> desfazer = new ArrayList<BufferedImage>();
     static  ArrayList<BufferedImage> objetos = new ArrayList<BufferedImage>();
     static ArrayList<Integer> forma = new ArrayList<Integer>() ;
+   /* public static ObjectOutputStream os2;
+    public static FileOutputStream fs2;*/
+    
     public static boolean flag=true;
+    public static boolean flagsave=false;
     public static int n = 0;
     public static int a=0;
     static Color cor = Color.BLACK;
@@ -143,7 +147,7 @@ class Serializavel{
  public void carregar(JLabel jLabel1,Imagem imagem){
        // Imagem layout=null;
         try {
- 
+           
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.showOpenDialog(null);
  
@@ -163,7 +167,7 @@ class Serializavel{
         }
         
         redesenha(jLabel1, imagem);
- 
+         
        // return layout;
     }
  
@@ -171,17 +175,29 @@ class Serializavel{
  
     public void serializar(Imagem layout){
         try {
- 
+           if(!Imagem.flagsave){
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.showSaveDialog(null);
  
             File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
- 
+            Parametros.file2=file;
             FileOutputStream fileStream = new FileOutputStream(file);
  
             ObjectOutputStream os = new ObjectOutputStream(fileStream);
+            //Imagem.fs2=fileStream;
+            //Imagem.os2=os;
+            
             os.writeObject(Imagem.parametros);
              os.close();
+             Imagem.flagsave=true;
+           } else {
+               
+                FileOutputStream fileStream = new FileOutputStream(Parametros.file2);
+                ObjectOutputStream os2 = new ObjectOutputStream(fileStream);
+                //Imagem.os2=new ObjectOutputStream(Imagem.fs2);
+               os2.writeObject(Imagem.parametros);
+             os2.close();
+           }
         } catch (FileNotFoundException e1) {
             e1.printStackTrace();
         } catch (IOException e1) {

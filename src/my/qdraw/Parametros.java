@@ -5,6 +5,7 @@
  */
 package my.qdraw;
 
+import java.io.File;
 import java.io.Serializable;
 
 /**
@@ -13,7 +14,7 @@ import java.io.Serializable;
  */
 public class Parametros implements Serializable {
     int x1,x2,y1,y2,raio,altura,largura,forma;
-
+    public String path;
     public Parametros(int x1, int x2, int y1, int y2, int raio, int altura, int largura, int forma) {
         this.x1 = x1;
         this.x2 = x2;
@@ -23,6 +24,11 @@ public class Parametros implements Serializable {
         this.altura = altura;
         this.largura = largura;
         this.forma = forma;
+        
+    }
+
+    public Parametros(String path) {
+        this.path = path;
     }
 
     public int getX1() {
@@ -56,6 +62,16 @@ public class Parametros implements Serializable {
     public int getForma() {
         return forma;
     }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+   
     
     
      
