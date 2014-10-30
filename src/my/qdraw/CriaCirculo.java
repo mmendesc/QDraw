@@ -6,6 +6,7 @@
 package my.qdraw;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import static my.qdraw.Imagem.criaCirculo;
 
 /**
@@ -59,6 +60,11 @@ public class CriaCirculo extends javax.swing.JDialog   {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTextField1.setColumns(4);
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
 
         jTextField2.setColumns(4);
 
@@ -133,12 +139,31 @@ public class CriaCirculo extends javax.swing.JDialog   {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
         x=Integer.parseInt(jTextField1.getText());
         y=Integer.parseInt(jTextField2.getText());
         raio=Integer.parseInt(jTextField3.getText());
         flag=true;
-        this.dispose();// TODO add your handling code here:
+        this.dispose();
+        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        try{
+            
+            String str = (jTextField1.getText());
+            String str1 = "0123456789";
+            if(str1.indexOf(str)<0)
+                throw new NumberFormatException();
+        }
+        catch(NumberFormatException e){
+            //jTextField1.setText("");
+            JOptionPane.showMessageDialog(null, "Digita Saporra Direito Mermão!");
+            int length = jTextField1.getText().length();  
+            jTextField1.setText(jTextField1.getText().substring(0, length-2));
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1KeyTyped
 
     /**
      * @param args the command line arguments
