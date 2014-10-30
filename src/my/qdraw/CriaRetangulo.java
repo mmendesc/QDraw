@@ -160,19 +160,21 @@ public class CriaRetangulo extends javax.swing.JDialog   {
         y=Integer.parseInt(jTextField2.getText());
         altura=Integer.parseInt(jTextField3.getText());
         largura=Integer.parseInt(jTextField4.getText());
-        flag=true;
+        
         /*Imagem.a++;
         Imagem.n++;*/
-        Imagem.parametros.add(new Parametros(x,0,y,0,0,altura,largura,3));
+        Imagem.parametros.add(new Parametros(x,0,y,0,0,altura,largura,3, Imagem.cor));
         Imagem.parametros.get(Imagem.parametros.size()-1).setPath(Imagem.pat);
-        if(Integer.parseInt(jTextField1.getText())>400)
+        if((Integer.parseInt(jTextField1.getText())+Integer.parseInt(jTextField4.getText()))>400)
               throw new MaiorValor("Desenhando Fora");
-        if(Integer.parseInt(jTextField2.getText())>298)
+        else if((Integer.parseInt(jTextField2.getText())+Integer.parseInt(jTextField3.getText()))>298)
               throw new MenorValor("Desenhando Fora");
-        if(Integer.parseInt(jTextField3.getText())==0)
+        else if(Integer.parseInt(jTextField3.getText())==0)
               throw new Vazio("Desenhando Fora");
-        if(Integer.parseInt(jTextField4.getText())==0)
+        else if(Integer.parseInt(jTextField4.getText())==0)
               throw new Execoes("Desenhando Fora");
+        else
+            flag=true;
         
         this.dispose();// TODO add your handling code here:
      }catch(MaiorValor e){JOptionPane.showMessageDialog(null, "Desenhando Fora,Diminua o Valor de X", null, JOptionPane.ERROR_MESSAGE);

@@ -154,19 +154,21 @@ public class CriaCirculo extends javax.swing.JDialog   {
      try{ 
         x=Integer.parseInt(jTextField1.getText());
         y=Integer.parseInt(jTextField2.getText());
-        raio=Integer.parseInt(jTextField3.getText());
-        flag=true;
-        /*Imagem.a++;
-        Imagem.n++;*/
+        raio=(Integer.parseInt(jTextField3.getText()));
+        //flag=true;
+        //Imagem.a++;
+        /*Imagem.n++;*/
+        //Imagem.parametros.get(Imagem.parametros.size()-1).setPath(Imagem.pat);
+        Imagem.parametros.add(new Parametros(x,0,y,0,raio,0,0,1, Imagem.cor));
         Imagem.parametros.get(Imagem.parametros.size()-1).setPath(Imagem.pat);
-        Imagem.parametros.add(new Parametros(x,0,y,0,raio,0,0,1));
-        Imagem.parametros.get(Imagem.parametros.size()-1).setPath(Imagem.pat);
-        if(Integer.parseInt(jTextField1.getText())>400 )
+        if((Integer.parseInt(jTextField1.getText())+Integer.parseInt(jTextField3.getText()))>400 )
               throw new MaiorValor("Desenhando Fora");
-        if(Integer.parseInt(jTextField2.getText())>298)
+        else if((Integer.parseInt(jTextField2.getText())+Integer.parseInt(jTextField3.getText()))>298)
               throw new MenorValor("Desenhando Fora");
-        if(Integer.parseInt(jTextField3.getText())==0)
+        else if(Integer.parseInt(jTextField3.getText())==0)
               throw new Vazio("Desenhando Fora");
+        else
+            flag=true;
         this.dispose();
      } catch(MaiorValor e){JOptionPane.showMessageDialog(null, "Desenhando Fora,Diminua o Valor de X", null, JOptionPane.ERROR_MESSAGE);
      } catch(MenorValor e){JOptionPane.showMessageDialog(null, "Desenhando Fora,Diminua o Valor de Y", null, JOptionPane.ERROR_MESSAGE);

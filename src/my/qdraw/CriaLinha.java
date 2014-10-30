@@ -161,19 +161,21 @@ public class CriaLinha extends javax.swing.JDialog   {
         y=Integer.parseInt(jTextField2.getText());
         xf=Integer.parseInt(jTextField3.getText());
         yf=Integer.parseInt(jTextField4.getText());
-        flag=true;
+        
         /*Imagem.a++;
         Imagem.n++;*/
-        Imagem.parametros.add(new Parametros(x,xf,y,yf,0,0,0,2));
+        Imagem.parametros.add(new Parametros(x,xf,y,yf,0,0,0,2, Imagem.cor));
         Imagem.parametros.get(Imagem.parametros.size()-1).setPath(Imagem.pat);
         if(Integer.parseInt(jTextField1.getText())>400)
               throw new MaiorValor("Desenhando Fora");
-        if(Integer.parseInt(jTextField2.getText())>298)
+        else if(Integer.parseInt(jTextField2.getText())>298)
               throw new MenorValor("Desenhando Fora");
-        if(Integer.parseInt(jTextField3.getText())>400)
+        else if(Integer.parseInt(jTextField3.getText())>400)
               throw new Vazio("Desenhando Fora");
-        if(Integer.parseInt(jTextField4.getText())>298)
+        else if(Integer.parseInt(jTextField4.getText())>298)
               throw new Execoes("Desenhando Fora");
+        else
+            flag=true;
         
         this.dispose();// TODO add your handling code here:
      }catch(MaiorValor e){JOptionPane.showMessageDialog(null, "Desenhando Fora,Diminua o Valor de X", null, JOptionPane.ERROR_MESSAGE);

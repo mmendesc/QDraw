@@ -101,7 +101,7 @@ public class LayoutUI extends javax.swing.JFrame {
             }
         });
 
-        jMenuItem1.setText("Novo");
+        jMenuItem1.setText("Limpar Tela");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -219,14 +219,17 @@ public class LayoutUI extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         Imagem.desfazer.clear();
+        Imagem.parametros.clear();
         jLabel1.setIcon(imagem.criarImagem());// TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-              new Serializavel().carregar(jLabel1,imagem);
+        try{      
+                new Serializavel().carregar(jLabel1,imagem);
               Imagem.flagsave=true;
              new Serializavel().serializar(imagem,Imagem.parametros);
             //jLabel1.setIcon(null);
+        }catch(NullPointerException e){}
 
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -276,6 +279,7 @@ public class LayoutUI extends javax.swing.JFrame {
         imagem.desfazer.remove(imagem.desfazer.size()-1);
         imagem.forma.remove(imagem.desfazer.size());
         imagem.objetos.remove(imagem.desfazer.size());
+        imagem.parametros.remove(imagem.desfazer.size());
         imagem.buffer1 = imagem.buffer2;
         //JOptionPane.showMessageDialog(null, desfazer.size());
         jLabel1.setIcon(new ImageIcon (imagem.buffer2));// TODO add your handling code here:
@@ -287,9 +291,11 @@ public class LayoutUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+       try{
         imagem.n = Integer.parseInt(JOptionPane.showInputDialog(null, null));
         jLabel1.setIcon(imagem.criarImagem());
          Serializavel.exclui(jLabel1, imagem, (imagem.n));
+       }catch(NumberFormatException e){}
         //JOptionPane.showMessageDialog(null, Integer.parseInt(n));
         //redesenha(Integer.parseInt(n));// TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem10ActionPerformed
@@ -305,14 +311,16 @@ public class LayoutUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-            
-        new Serializavel().serializar(imagem,Imagem.parametros);        // TODO add your handling code here:
+        try{    
+            new Serializavel().serializar(imagem,Imagem.parametros);
+        }catch(NullPointerException e){}// TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        try{    
             Imagem.flagsave=true;
             new Serializavel().serializar(imagem,Imagem.parametros);
-           ;// TODO add your handling code here:
+        }catch(NullPointerException e){}// TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**

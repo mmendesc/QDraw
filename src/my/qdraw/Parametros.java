@@ -5,6 +5,7 @@
  */
 package my.qdraw;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.Serializable;
 
@@ -15,7 +16,8 @@ import java.io.Serializable;
 public class Parametros implements Serializable {
     int x1,x2,y1,y2,raio,altura,largura,forma;
     public String path;
-    public Parametros(int x1, int x2, int y1, int y2, int raio, int altura, int largura, int forma) {
+    Color cor;
+    public Parametros(int x1, int x2, int y1, int y2, int raio, int altura, int largura, int forma, Color cor) {
         this.x1 = x1;
         this.x2 = x2;
         this.y1 = y1;
@@ -24,10 +26,11 @@ public class Parametros implements Serializable {
         this.altura = altura;
         this.largura = largura;
         this.forma = forma;
+        this.cor = cor;
         
     }
 
-    public Parametros(int x1, int x2, int y1, int y2, int raio, int altura, int largura, int forma, String path) {
+    public Parametros(int x1, int x2, int y1, int y2, int raio, int altura, int largura, int forma, String path, Color cor) {
         this.x1 = x1;
         this.x2 = x2;
         this.y1 = y1;
@@ -37,6 +40,7 @@ public class Parametros implements Serializable {
         this.largura = largura;
         this.forma = forma;
         this.path = path;
+        this.cor = cor;
     }
 
     public Parametros(String path) {
@@ -82,6 +86,15 @@ public class Parametros implements Serializable {
     public void setPath(String path) {
         this.path = path;
     }
+
+    public Color getCor() {
+        return cor;
+    }
+
+    public void setCor(Color cor) {
+        this.cor = cor;
+    }
+    
 
    
     

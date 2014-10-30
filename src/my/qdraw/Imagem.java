@@ -89,7 +89,7 @@ public class Imagem implements java.io.Serializable{
         return new ImageIcon(buffer1);
     }
      public static ImageIcon criaRetangulo(int x, int y, int w,int w1){
-         forma.add(2);
+        forma.add(2);
         Graphics2D g2= buffer3.createGraphics();
         Graphics2D g = buffer2.createGraphics();
         g.drawImage(buffer1, 0,0 , null);
@@ -207,7 +207,9 @@ class Serializavel{
     }
     
     public static void redesenha(JLabel jLabel1,Imagem imagem){
+        jLabel1.setIcon(imagem.criarImagem());
         for(int i=0;i<Imagem.parametros.size();i++){
+            Imagem.cor = Imagem.parametros.get(i).getCor();
             if(Imagem.parametros.get(i).getForma()==1)
                jLabel1.setIcon(imagem.criaCirculo(Imagem.parametros.get(i).getX1(), Imagem.parametros.get(i).getY1(), Imagem.parametros.get(i).getRaio(), Imagem.parametros.get(i).getRaio()));
             if(Imagem.parametros.get(i).getForma()==2)
@@ -215,14 +217,15 @@ class Serializavel{
             if(Imagem.parametros.get(i).getForma()==3)
                 jLabel1.setIcon(imagem.criaRetangulo(Imagem.parametros.get(i).getX1(), Imagem.parametros.get(i).getY1(), Imagem.parametros.get(i).largura, Imagem.parametros.get(i).getAltura()));
         }
+        Imagem.cor = Color.BLACK;
     }
     
     public static void exclui(JLabel jLabel1,Imagem imagem,int n){
       
         try{
           
-        Imagem.parametros.remove(Imagem.n-1-Imagem.a);
-        Imagem.a++;
+        Imagem.parametros.remove(Imagem.n-1/*-Imagem.a*/);
+        //Imagem.a++;
         if(Imagem.parametros.isEmpty())
             Imagem.a=0;
         new Serializavel().redesenha(jLabel1,imagem);
