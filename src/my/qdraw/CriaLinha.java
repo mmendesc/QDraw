@@ -176,7 +176,8 @@ public class CriaLinha extends javax.swing.JDialog   {
      }catch(MaiorValor e){JOptionPane.showMessageDialog(null, "Desenhando Fora,Diminua o Valor de X", null, JOptionPane.ERROR_MESSAGE);
      } catch(MenorValor e){JOptionPane.showMessageDialog(null, "Desenhando Fora,Diminua o Valor de Y", null, JOptionPane.ERROR_MESSAGE);
      }catch(Vazio e){JOptionPane.showMessageDialog(null, "Desenhando Figura de Tamanho 0, Digite um Raio maior", null, JOptionPane.ERROR_MESSAGE);
-     }catch(Execoes e){JOptionPane.showMessageDialog(null, "Desenhando Figura de Tamanho 0, Digite um Raio maior", null, JOptionPane.ERROR_MESSAGE);}
+     }catch(Execoes e){JOptionPane.showMessageDialog(null, "Desenhando Figura de Tamanho 0, Digite um Raio maior", null, JOptionPane.ERROR_MESSAGE);
+     }catch(NumberFormatException e){}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped

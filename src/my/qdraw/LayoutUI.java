@@ -256,6 +256,7 @@ public class LayoutUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenu1ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+     try{   
         if(imagem.desfazer.size()!=1){
         Graphics2D g = imagem.buffer2.createGraphics();
         //buffer1 = desfazer.get(desfazer.size()-1);
@@ -271,6 +272,7 @@ public class LayoutUI extends javax.swing.JFrame {
             imagem.desfazer.remove(0);
             jLabel1.setIcon(imagem.criarImagem());
         }
+     }catch(ArrayIndexOutOfBoundsException e){}
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
@@ -280,7 +282,12 @@ public class LayoutUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-        imagem.cor = JColorChooser.showDialog(jPanel1, "Editando Cor da Figura", imagem.cor);
+        Color corDefault = JColorChooser.showDialog(jPanel1, "Editando Cor da Figura", imagem.cor);
+        //imagem.cor ;//= JColorChooser.showDialog(jPanel1, "Editando Cor da Figura", imagem.cor);
+        if(corDefault==null)
+            imagem.cor= Color.BLACK;
+        else 
+            imagem.cor=corDefault;
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 

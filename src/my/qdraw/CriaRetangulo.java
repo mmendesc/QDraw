@@ -175,7 +175,8 @@ public class CriaRetangulo extends javax.swing.JDialog   {
      }catch(MaiorValor e){JOptionPane.showMessageDialog(null, "Desenhando Fora,Diminua o Valor de X", null, JOptionPane.ERROR_MESSAGE);
      } catch(MenorValor e){JOptionPane.showMessageDialog(null, "Desenhando Fora,Diminua o Valor de Y", null, JOptionPane.ERROR_MESSAGE);
      }catch(Vazio e){JOptionPane.showMessageDialog(null, "Desenhando Figura de Tamanho 0, Digite uma Altura maior", null, JOptionPane.ERROR_MESSAGE);
-     }catch(Execoes e){JOptionPane.showMessageDialog(null, "Desenhando Figura de Tamanho 0, Digite uma Largura maior", null, JOptionPane.ERROR_MESSAGE);}
+     }catch(Execoes e){JOptionPane.showMessageDialog(null, "Desenhando Figura de Tamanho 0, Digite uma Largura maior", null, JOptionPane.ERROR_MESSAGE);
+     }catch(NumberFormatException e){}
     
         
     }//GEN-LAST:event_jButton1ActionPerformed
