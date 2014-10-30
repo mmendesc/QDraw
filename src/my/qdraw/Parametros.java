@@ -27,6 +27,18 @@ public class Parametros implements Serializable {
         
     }
 
+    public Parametros(int x1, int x2, int y1, int y2, int raio, int altura, int largura, int forma, String path) {
+        this.x1 = x1;
+        this.x2 = x2;
+        this.y1 = y1;
+        this.y2 = y2;
+        this.raio = raio;
+        this.altura = altura;
+        this.largura = largura;
+        this.forma = forma;
+        this.path = path;
+    }
+
     public Parametros(String path) {
         this.path = path;
     }

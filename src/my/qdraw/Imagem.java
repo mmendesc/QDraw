@@ -24,6 +24,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import static my.qdraw.Imagem.Copiar;
+import static my.qdraw.Imagem.a;
 import static my.qdraw.Imagem.desfazer;
 
 /**
@@ -39,7 +40,7 @@ public class Imagem implements java.io.Serializable{
     static ArrayList<Integer> forma = new ArrayList<Integer>() ;
    /* public static ObjectOutputStream os2;
     public static FileOutputStream fs2;*/
-    
+    public static String pat;
     public static boolean flag=true;
     public static boolean flagsave=false;
     public static int n = 0;
@@ -165,7 +166,7 @@ class Serializavel{
         } catch (ClassNotFoundException e1) {
             e1.printStackTrace();
         }
-        
+        Imagem.flagsave=true;
         redesenha(jLabel1, imagem);
          
        // return layout;
@@ -173,16 +174,16 @@ class Serializavel{
  
  
  
-    public void serializar(Imagem layout){
+    public void serializar(Imagem layout,ArrayList<Parametros> parametros){
         try {
            if(!Imagem.flagsave){
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.showSaveDialog(null);
- 
-            File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
-            Parametros.file2=file;
+            String a=fileChooser.getSelectedFile().getAbsolutePath();
+            File file = new File(a);
+            parametros.get((parametros.size()-1)).setPath(a);
             FileOutputStream fileStream = new FileOutputStream(file);
- 
+            Imagem.pat=a;
             ObjectOutputStream os = new ObjectOutputStream(fileStream);
             //Imagem.fs2=fileStream;
             //Imagem.os2=os;
@@ -191,8 +192,8 @@ class Serializavel{
              os.close();
              Imagem.flagsave=true;
            } else {
-               
-                FileOutputStream fileStream = new FileOutputStream(Parametros.file2);
+               Imagem.pat=parametros.get((parametros.size()-1)).getPath();
+                FileOutputStream fileStream = new FileOutputStream(new File(Imagem.pat));
                 ObjectOutputStream os2 = new ObjectOutputStream(fileStream);
                 //Imagem.os2=new ObjectOutputStream(Imagem.fs2);
                os2.writeObject(Imagem.parametros);

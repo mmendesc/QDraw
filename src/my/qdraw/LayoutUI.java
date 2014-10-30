@@ -224,6 +224,8 @@ public class LayoutUI extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
               new Serializavel().carregar(jLabel1,imagem);
+              Imagem.flagsave=true;
+             new Serializavel().serializar(imagem,Imagem.parametros);
             //jLabel1.setIcon(null);
 
         
@@ -304,12 +306,13 @@ public class LayoutUI extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
             
-        new Serializavel().serializar(imagem);        // TODO add your handling code here:
+        new Serializavel().serializar(imagem,Imagem.parametros);        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
             Imagem.flagsave=true;
-            new Serializavel().serializar(imagem);        // TODO add your handling code here:
+            new Serializavel().serializar(imagem,Imagem.parametros);
+           ;// TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
