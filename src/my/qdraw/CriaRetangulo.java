@@ -161,6 +161,8 @@ public class CriaRetangulo extends javax.swing.JDialog   {
         altura=Integer.parseInt(jTextField3.getText());
         largura=Integer.parseInt(jTextField4.getText());
         flag=true;
+        /*Imagem.a++;
+        Imagem.n++;*/
         Imagem.parametros.add(new Parametros(x,0,y,0,0,altura,largura,3));
         if(Integer.parseInt(jTextField1.getText())>400)
               throw new MaiorValor("Desenhando Fora");

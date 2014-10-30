@@ -279,7 +279,9 @@ public class LayoutUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-        imagem.n = JOptionPane.showInputDialog(null, imagem.n);
+        imagem.n = Integer.parseInt(JOptionPane.showInputDialog(null, null));
+        jLabel1.setIcon(imagem.criarImagem());
+         Serializavel.exclui(jLabel1, imagem, (imagem.n));
         //JOptionPane.showMessageDialog(null, Integer.parseInt(n));
         //redesenha(Integer.parseInt(n));// TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem10ActionPerformed

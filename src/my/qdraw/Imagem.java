@@ -38,7 +38,8 @@ public class Imagem implements java.io.Serializable{
     static  ArrayList<BufferedImage> objetos = new ArrayList<BufferedImage>();
     static ArrayList<Integer> forma = new ArrayList<Integer>() ;
     public static boolean flag=true;
-    public String n = "";
+    public static int n = 0;
+    public static int a=0;
     static Color cor = Color.BLACK;
     static ArrayList<Parametros> parametros= new ArrayList<Parametros>();
     public ImageIcon criarImagem() {  
@@ -197,5 +198,18 @@ class Serializavel{
             if(Imagem.parametros.get(i).getForma()==3)
                 jLabel1.setIcon(imagem.criaRetangulo(Imagem.parametros.get(i).getX1(), Imagem.parametros.get(i).getY1(), Imagem.parametros.get(i).largura, Imagem.parametros.get(i).getAltura()));
         }
+    }
+    
+    public static void exclui(JLabel jLabel1,Imagem imagem,int n){
+      
+        try{
+          
+        Imagem.parametros.remove(Imagem.n-1-Imagem.a);
+        Imagem.a++;
+        if(Imagem.parametros.isEmpty())
+            Imagem.a=0;
+        new Serializavel().redesenha(jLabel1,imagem);
+    
+      }catch(IndexOutOfBoundsException e){}
     }
 }

@@ -156,6 +156,8 @@ public class CriaCirculo extends javax.swing.JDialog   {
         y=Integer.parseInt(jTextField2.getText());
         raio=Integer.parseInt(jTextField3.getText());
         flag=true;
+        /*Imagem.a++;
+        Imagem.n++;*/
         Imagem.parametros.add(new Parametros(x,0,y,0,raio,0,0,1));
         if(Integer.parseInt(jTextField1.getText())>400 )
               throw new MaiorValor("Desenhando Fora");
