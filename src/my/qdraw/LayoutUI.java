@@ -318,7 +318,7 @@ public class LayoutUI extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         try{    
-            Imagem.flagsave=true;
+            Imagem.flagsave=false;
             new Serializavel().serializar(imagem,Imagem.parametros);
         }catch(NullPointerException e){}// TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem4ActionPerformed
