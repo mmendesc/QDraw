@@ -153,8 +153,11 @@ public class CriaCirculo extends javax.swing.JDialog   {
             
             String str = (jTextField1.getText());
             String str1 = "0123456789";
-            if(str1.indexOf(str)<0)
-                throw new NumberFormatException();
+            if(!str1.contains(evt.getKeyChar()+"")){
+
+              evt.consume();
+
+       }
         }
         catch(NumberFormatException e){
             //jTextField1.setText("");
