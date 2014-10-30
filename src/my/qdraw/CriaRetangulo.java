@@ -50,12 +50,32 @@ public class CriaRetangulo extends javax.swing.JDialog   {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTextField1.setColumns(4);
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
 
         jTextField2.setColumns(4);
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
+            }
+        });
 
         jTextField3.setColumns(4);
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField3KeyTyped(evt);
+            }
+        });
 
         jTextField4.setColumns(4);
+        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField4KeyTyped(evt);
+            }
+        });
 
         jLabel1.setText("Retangulo");
 
@@ -141,6 +161,82 @@ public class CriaRetangulo extends javax.swing.JDialog   {
         flag=true;
         this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+            try{
+            
+            String str = (jTextField1.getText());
+            String str1 = "0123456789";
+            if(!str1.contains(evt.getKeyChar()+"")){
+
+              evt.consume();
+
+       }
+        }
+        catch(NumberFormatException e){
+           /* //jTextField1.setText("");
+            JOptionPane.showMessageDialog(null, "Digita Saporra Direito Mermão!");
+            int length = jTextField1.getText().length();  
+            jTextField1.setText(jTextField1.getText().substring(0, length-2));*/
+        }   // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1KeyTyped
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+            try{
+            
+            String str = (jTextField1.getText());
+            String str1 = "0123456789";
+            if(!str1.contains(evt.getKeyChar()+"")){
+
+              evt.consume();
+
+       }
+        }
+        catch(NumberFormatException e){
+           /* //jTextField1.setText("");
+            JOptionPane.showMessageDialog(null, "Digita Saporra Direito Mermão!");
+            int length = jTextField1.getText().length();  
+            jTextField1.setText(jTextField1.getText().substring(0, length-2));*/
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2KeyTyped
+
+    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
+            try{
+            
+            String str = (jTextField1.getText());
+            String str1 = "0123456789";
+            if(!str1.contains(evt.getKeyChar()+"")){
+
+              evt.consume();
+
+       }
+        }
+        catch(NumberFormatException e){
+           /* //jTextField1.setText("");
+            JOptionPane.showMessageDialog(null, "Digita Saporra Direito Mermão!");
+            int length = jTextField1.getText().length();  
+            jTextField1.setText(jTextField1.getText().substring(0, length-2));*/
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3KeyTyped
+
+    private void jTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyTyped
+            try{
+            
+            String str = (jTextField1.getText());
+            String str1 = "0123456789";
+            if(!str1.contains(evt.getKeyChar()+"")){
+
+              evt.consume();
+
+       }
+        }
+        catch(NumberFormatException e){
+           /* //jTextField1.setText("");
+            JOptionPane.showMessageDialog(null, "Digita Saporra Direito Mermão!");
+            int length = jTextField1.getText().length();  
+            jTextField1.setText(jTextField1.getText().substring(0, length-2));*/
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4KeyTyped
 
     /**
      * @param args the command line arguments

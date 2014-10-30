@@ -67,8 +67,18 @@ public class CriaCirculo extends javax.swing.JDialog   {
         });
 
         jTextField2.setColumns(4);
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField2KeyTyped(evt);
+            }
+        });
 
         jTextField3.setColumns(4);
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField3KeyTyped(evt);
+            }
+        });
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Circulo");
@@ -160,13 +170,51 @@ public class CriaCirculo extends javax.swing.JDialog   {
        }
         }
         catch(NumberFormatException e){
-            //jTextField1.setText("");
+           /* //jTextField1.setText("");
             JOptionPane.showMessageDialog(null, "Digita Saporra Direito Mermão!");
             int length = jTextField1.getText().length();  
-            jTextField1.setText(jTextField1.getText().substring(0, length-2));
+            jTextField1.setText(jTextField1.getText().substring(0, length-2));*/
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1KeyTyped
+
+    private void jTextField2KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyTyped
+        try{
+            
+            String str = (jTextField1.getText());
+            String str1 = "0123456789";
+            if(!str1.contains(evt.getKeyChar()+"")){
+
+              evt.consume();
+
+       }
+        }
+        catch(NumberFormatException e){
+           /* //jTextField1.setText("");
+            JOptionPane.showMessageDialog(null, "Digita Saporra Direito Mermão!");
+            int length = jTextField1.getText().length();  
+            jTextField1.setText(jTextField1.getText().substring(0, length-2));*/
+        }// TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2KeyTyped
+
+    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
+            try{
+            
+            String str = (jTextField1.getText());
+            String str1 = "0123456789";
+            if(!str1.contains(evt.getKeyChar()+"")){
+
+              evt.consume();
+
+       }
+        }
+        catch(NumberFormatException e){
+           /* //jTextField1.setText("");
+            JOptionPane.showMessageDialog(null, "Digita Saporra Direito Mermão!");
+            int length = jTextField1.getText().length();  
+            jTextField1.setText(jTextField1.getText().substring(0, length-2));*/
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3KeyTyped
 
     /**
      * @param args the command line arguments
