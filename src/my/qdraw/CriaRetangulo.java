@@ -6,6 +6,7 @@
 package my.qdraw;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -154,12 +155,29 @@ public class CriaRetangulo extends javax.swing.JDialog   {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+     try{   
         x=Integer.parseInt(jTextField1.getText());
         y=Integer.parseInt(jTextField2.getText());
         altura=Integer.parseInt(jTextField3.getText());
         largura=Integer.parseInt(jTextField4.getText());
         flag=true;
+        
+        if(Integer.parseInt(jTextField1.getText())>400)
+              throw new MaiorValor("Desenhando Fora");
+        if(Integer.parseInt(jTextField2.getText())>298)
+              throw new MenorValor("Desenhando Fora");
+        if(Integer.parseInt(jTextField3.getText())==0)
+              throw new Vazio("Desenhando Fora");
+        if(Integer.parseInt(jTextField4.getText())==0)
+              throw new Execoes("Desenhando Fora");
+        
         this.dispose();// TODO add your handling code here:
+     }catch(MaiorValor e){JOptionPane.showMessageDialog(null, "Desenhando Fora,Diminua o Valor de X", null, JOptionPane.ERROR_MESSAGE);
+     } catch(MenorValor e){JOptionPane.showMessageDialog(null, "Desenhando Fora,Diminua o Valor de Y", null, JOptionPane.ERROR_MESSAGE);
+     }catch(Vazio e){JOptionPane.showMessageDialog(null, "Desenhando Figura de Tamanho 0, Digite uma Altura maior", null, JOptionPane.ERROR_MESSAGE);
+     }catch(Execoes e){JOptionPane.showMessageDialog(null, "Desenhando Figura de Tamanho 0, Digite uma Largura maior", null, JOptionPane.ERROR_MESSAGE);}
+    
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
